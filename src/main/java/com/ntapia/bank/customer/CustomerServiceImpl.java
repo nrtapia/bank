@@ -1,6 +1,6 @@
-// Copyright (c) 2018 Boomi, Inc.
 package com.ntapia.bank.customer;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -33,6 +33,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer saveOrUpdate(Customer object) {
+        if (object == null || StringUtils.isBlank(object.getFullName())) {
+            throw new CustomerInvalidDataException();
+        }
+
+        object.setFullName(object.getFullName().toUpperCase());
+        if (object.getId() == null) {
+            repository.findByFullName(object.getFullName()).ifPresent(c -> {
+                throw new CustomerAlreadyExistException();
+            });
+        }
+
         return repository.save(object);
     }
 

@@ -8,4 +8,5 @@ import com.ntapia.bank.common.CRUDService;
  */
 public interface CustomerService extends CRUDService<Customer> {
 
+
 }
