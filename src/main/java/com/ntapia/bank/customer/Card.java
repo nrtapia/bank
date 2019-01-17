@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 import java.io.Serializable;
 
@@ -39,4 +40,7 @@ public class Card implements Serializable {
 
     @Column(length = 50, nullable = false)
     private String cardType;
+
+    @Version
+    private Long version;
 }

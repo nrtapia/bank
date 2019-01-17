@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 @Service
-@Transactional(Transactional.TxType.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public class CustomerServiceImpl implements CustomerService {
 
     private static final String FIELD_NAME = "name";
@@ -49,6 +49,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void delete(Long id) {
-        repository.deleteById(id);
+        repository.delete(repository.findById(id).orElseThrow(CustomerNotFoundException::new));
     }
 }

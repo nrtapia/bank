@@ -4,7 +4,7 @@ package com.ntapia.bank.customer;
 /**
  *
  */
-public class CustomerAlreadyExistException extends RuntimeException{
+public class CustomerAlreadyExistException extends RuntimeException {
 
     public CustomerAlreadyExistException() {
         super("Customer already exist!");
