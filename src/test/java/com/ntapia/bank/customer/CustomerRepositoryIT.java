@@ -36,8 +36,8 @@ public class CustomerRepositoryIT {
 
     @Before
     public void init() {
-        mockCustomer1 = Customer.builder().fullName("Bart").address("address 1").city("DC").phone("123").build();
-        mockCustomer2 = Customer.builder().fullName("Homer").address("address 2").city("Miami").phone("456").build();
+        mockCustomer1 = CustomerUtil.getCustomerStub1();
+        mockCustomer2 = CustomerUtil.getCustomerStub2();
         mockCard1 = Card.builder().number1("0000").number2("1111").number3("2222").number4("3333").cardType(
                 "credit card").ccv("999").build();
         mockCard2 = Card.builder().number1("5555").number2("6666").number3("7777").number4("8888").cardType(

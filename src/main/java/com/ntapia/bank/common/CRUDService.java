@@ -6,7 +6,11 @@ public interface CRUDService<T> {
 
     List<T> list();
 
-    T saveOrUpdate(T object);
+    T get(Long id);
+
+    T save(T object);
+
+    T update(T object, Long id);
 
     void delete(Long id);
 }

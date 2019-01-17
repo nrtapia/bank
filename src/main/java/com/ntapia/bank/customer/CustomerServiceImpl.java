@@ -36,22 +36,49 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer saveOrUpdate(Customer object) {
+    public Customer get(Long id) {
+        return repository.findById(id).orElseThrow(CustomerNotFoundException::new);
+    }
+
+    @Override
+    public Customer save(Customer object) {
         if (object == null || StringUtils.isBlank(object.getFullName())) {
             throw new CustomerInvalidDataException();
         }
 
         object.setFullName(object.getFullName().toUpperCase());
-        if (object.getId() == null) {
-            repository.findByFullName(object.getFullName()).ifPresent(c -> {
-                throw new CustomerAlreadyExistException();
-            });
-        }
+        repository.findByFullName(object.getFullName()).ifPresent(c -> {
+            throw new CustomerAlreadyExistException();
+        });
 
         try {
             return repository.save(object);
         } catch (Exception e) {
             LOG.error("Error save Customer", e);
+            throw new CustomerException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Customer update(Customer object, Long id) {
+        if (object == null || id == null || StringUtils.isBlank(object.getFullName())) {
+            throw new CustomerInvalidDataException();
+        }
+
+        object.setFullName(object.getFullName().toUpperCase());
+        Customer customer = repository.findByFullName(object.getFullName()).orElseThrow(CustomerNotFoundException::new);
+        if (!id.equals(customer.getId())) {
+            throw new CustomerAlreadyExistException();
+        }
+
+        try {
+            customer.setFullName(object.getFullName());
+            customer.setAddress(object.getAddress());
+            customer.setCity(object.getCity());
+            customer.setPhone(object.getPhone());
+            return repository.save(customer);
+        } catch (Exception e) {
+            LOG.error("Error update Customer", e);
             throw new CustomerException(e.getMessage());
         }
     }
