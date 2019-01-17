@@ -1,5 +1,4 @@
-// Copyright (c) 2018 Boomi, Inc.
-package com.ntapia.bank.customer;
+package com.ntapia.bank.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +22,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-class Card implements Serializable {
+public class Card implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

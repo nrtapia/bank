@@ -1,4 +1,4 @@
-package com.ntapia.bank.customer;
+package com.ntapia.bank.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
@@ -25,12 +23,11 @@ import java.util.List;
  *
  */
 @Entity
-@NamedEntityGraph(name = "Customer.cards", attributeNodes = @NamedAttributeNode("cards"))
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-class Customer implements Serializable {
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

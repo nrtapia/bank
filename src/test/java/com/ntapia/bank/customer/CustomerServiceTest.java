@@ -1,5 +1,12 @@
 package com.ntapia.bank.customer;
 
+import com.ntapia.bank.dao.CustomerRepository;
+import com.ntapia.bank.exception.CustomerAlreadyExistException;
+import com.ntapia.bank.exception.CustomerInvalidDataException;
+import com.ntapia.bank.exception.CustomerNotFoundException;
+import com.ntapia.bank.model.Customer;
+import com.ntapia.bank.service.impl.CustomerServiceImpl;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,25 +40,27 @@ public class CustomerServiceTest {
 
     @Before
     public void init() {
-        mockCustomer = Customer.builder().address("address 2").city("Miami").build();
+        mockCustomer = CustomerUtil.getCustomerStub1();
     }
 
     @Test(expected = CustomerInvalidDataException.class)
     public void testCustomerInvalidDataNull() {
-        customerService.saveOrUpdate(null);
+        customerService.save(null);
         verifyNeverCallFinByNullNameAndSave();
     }
 
     @Test(expected = CustomerInvalidDataException.class)
     public void testCustomerInvalidDataNameNull() {
-        customerService.saveOrUpdate(mockCustomer);
+        Customer customer = CustomerUtil.getCustomerStub2();
+        customer.setFullName(null);
+        customerService.save(customer);
         verifyNeverCallFinByNullNameAndSave();
     }
 
     @Test(expected = CustomerInvalidDataException.class)
     public void testCustomerInvalidDataNameEmpty() {
         mockCustomer.setFullName("  ");
-        customerService.saveOrUpdate(mockCustomer);
+        customerService.save(mockCustomer);
         verifyNeverCallFinByNullNameAndSave();
     }
 
@@ -61,13 +70,13 @@ public class CustomerServiceTest {
     }
 
     @Test(expected = CustomerAlreadyExistException.class)
-    public void testCustomerAlredyExist() {
+    public void testCustomerAlreadyExist() {
         final String name = "HOMER";
         Optional<Customer> customer = Optional.of(Customer.builder().id(1L).fullName("Homer").build());
         when(repository.findByFullName(name)).thenReturn(customer);
 
         mockCustomer.setFullName(name);
-        customerService.saveOrUpdate(mockCustomer);
+        customerService.save(mockCustomer);
         verify(repository, times(1)).findByFullName(name);
         verify(repository, never()).save(any());
     }
@@ -78,7 +87,7 @@ public class CustomerServiceTest {
         when(repository.save(mockCustomer)).thenReturn(mockCustomer);
         when(repository.findByFullName(anyString())).thenReturn(Optional.empty());
 
-        customerService.saveOrUpdate(mockCustomer);
+        customerService.save(mockCustomer);
         verify(repository, times(1)).findByFullName(mockCustomer.getFullName());
         verify(repository, times(1)).save(mockCustomer);
     }
