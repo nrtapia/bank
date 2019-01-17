@@ -1,6 +1,8 @@
 package com.ntapia.bank.customer;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,9 @@ import java.util.List;
 @Transactional(propagation = Propagation.REQUIRED)
 public class CustomerServiceImpl implements CustomerService {
 
-    private static final String FIELD_NAME = "name";
+    private static final Logger LOG = LoggerFactory.getLogger(CustomerServiceImpl.class);
+
+    private static final String FIELD_NAME = "fullName";
     private static final Sort DEFAULT_SORT = new Sort(Sort.Direction.ASC, FIELD_NAME);
 
     private final CustomerRepository repository;
@@ -44,7 +48,12 @@ public class CustomerServiceImpl implements CustomerService {
             });
         }
 
-        return repository.save(object);
+        try {
+            return repository.save(object);
+        } catch (Exception e) {
+            LOG.error("Error save Customer", e);
+            throw new CustomerException(e.getMessage());
+        }
     }
 
     @Override

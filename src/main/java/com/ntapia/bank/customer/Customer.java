@@ -8,12 +8,14 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import java.io.Serializable;
@@ -23,11 +25,12 @@ import java.util.List;
  *
  */
 @Entity
+@NamedEntityGraph(name = "Customer.cards", attributeNodes = @NamedAttributeNode("cards"))
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer implements Serializable {
+class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -45,7 +48,7 @@ public class Customer implements Serializable {
     @Column(length = 20)
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private List<Card> cards;
 

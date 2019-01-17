@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class CustomerRepositoryIT {
         assertNotNull("Cards not found", customer.getCards());
         assertEquals("Cards size grong", 2, customer.getCards().size());
 
-        mockCustomer1.getCards().stream().forEach(card -> assertNotNull(card.getId()));
+        mockCustomer1.getCards().forEach(card -> assertNotNull(card.getId()));
     }
 
     @Test
@@ -71,7 +72,7 @@ public class CustomerRepositoryIT {
         repository.save(mockCustomer1);
         repository.save(mockCustomer2);
 
-        List<Customer> customerList = repository.findAll();
+        List<Customer> customerList = repository.findAll(new Sort(Sort.Direction.ASC, "fullName"));
         assertNotNull("List not found", customerList);
         assertEquals("Customer list size wrong", 2, customerList.size());
     }
