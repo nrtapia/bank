@@ -1,6 +1,7 @@
 // Copyright (c) 2018 Boomi, Inc.
 package com.ntapia.bank.customer;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import java.io.Serializable;
  */
 @Entity
 @Data
+@Builder
 public class Card implements Serializable {
 
     @Id

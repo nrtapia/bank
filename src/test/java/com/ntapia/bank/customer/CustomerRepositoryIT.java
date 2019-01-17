@@ -9,7 +9,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
@@ -28,11 +30,17 @@ public class CustomerRepositoryIT {
 
     private Customer mockCustomer1;
     private Customer mockCustomer2;
+    private Card mockCard1;
+    private Card mockCard2;
 
     @Before
     public void init() {
         mockCustomer1 = Customer.builder().fullName("Bart").address("address 1").city("DC").phone("123").build();
         mockCustomer2 = Customer.builder().fullName("Homer").address("address 2").city("Miami").phone("456").build();
+        mockCard1 = Card.builder().number1("0000").number2("1111").number3("2222").number4("3333").cardType(
+                "credit card").ccv("999").build();
+        mockCard2 = Card.builder().number1("5555").number2("6666").number3("7777").number4("8888").cardType(
+                "debit card").ccv("000").build();
     }
 
     @Test
@@ -40,6 +48,22 @@ public class CustomerRepositoryIT {
         Customer customer = repository.save(mockCustomer1);
         assertNotNull("Save operation fail", customer);
         assertNotNull("Id not found", customer.getId());
+    }
+
+    @Test
+    public void testSaveCards() {
+        List<Card> cards = Optional.ofNullable(mockCustomer1.getCards()).orElse(new ArrayList<>());
+        cards.add(mockCard1);
+        cards.add(mockCard2);
+        mockCustomer1.setCards(cards);
+
+        Customer customer = repository.save(mockCustomer1);
+        assertNotNull("Save operation fail", customer);
+        assertNotNull("Id not found", customer.getId());
+        assertNotNull("Cards not found", customer.getCards());
+        assertEquals("Cards size grong", 2, customer.getCards().size());
+
+        mockCustomer1.getCards().stream().forEach(card -> assertNotNull(card.getId()));
     }
 
     @Test
