@@ -1,4 +1,4 @@
-package com.ntapia.bank.customer;
+package com.ntapia.bank.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,7 +27,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-class Customer implements Serializable {
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

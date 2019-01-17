@@ -1,4 +1,12 @@
-package com.ntapia.bank.customer;
+package com.ntapia.bank.service.impl;
+
+import com.ntapia.bank.dao.CustomerRepository;
+import com.ntapia.bank.exception.CustomerAlreadyExistException;
+import com.ntapia.bank.exception.CustomerException;
+import com.ntapia.bank.exception.CustomerInvalidDataException;
+import com.ntapia.bank.exception.CustomerNotFoundException;
+import com.ntapia.bank.model.Customer;
+import com.ntapia.bank.service.CustomerService;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

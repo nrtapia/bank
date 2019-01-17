@@ -1,7 +1,7 @@
-// Copyright (c) 2018 Boomi, Inc.
-package com.ntapia.bank.customer;
+package com.ntapia.bank.service;
 
 import com.ntapia.bank.common.CRUDService;
+import com.ntapia.bank.model.Customer;
 
 /**
  *

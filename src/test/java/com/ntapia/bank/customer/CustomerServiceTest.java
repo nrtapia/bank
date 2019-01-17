@@ -1,5 +1,12 @@
 package com.ntapia.bank.customer;
 
+import com.ntapia.bank.dao.CustomerRepository;
+import com.ntapia.bank.exception.CustomerAlreadyExistException;
+import com.ntapia.bank.exception.CustomerInvalidDataException;
+import com.ntapia.bank.exception.CustomerNotFoundException;
+import com.ntapia.bank.model.Customer;
+import com.ntapia.bank.service.impl.CustomerServiceImpl;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,7 +70,7 @@ public class CustomerServiceTest {
     }
 
     @Test(expected = CustomerAlreadyExistException.class)
-    public void testCustomerAlredyExist() {
+    public void testCustomerAlreadyExist() {
         final String name = "HOMER";
         Optional<Customer> customer = Optional.of(Customer.builder().id(1L).fullName("Homer").build());
         when(repository.findByFullName(name)).thenReturn(customer);

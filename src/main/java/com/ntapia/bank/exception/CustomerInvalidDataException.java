@@ -1,5 +1,4 @@
-// Copyright (c) 2018 Boomi, Inc.
-package com.ntapia.bank.customer;
+package com.ntapia.bank.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -8,13 +7,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  */
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-class CustomerInvalidDataException extends RuntimeException {
+public class CustomerInvalidDataException extends RuntimeException {
 
     CustomerInvalidDataException(String message) {
         super(message);
     }
 
-    CustomerInvalidDataException() {
+    public CustomerInvalidDataException() {
         this("Full name is required");
     }
 }

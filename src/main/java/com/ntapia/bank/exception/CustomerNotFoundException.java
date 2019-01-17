@@ -1,5 +1,4 @@
-// Copyright (c) 2018 Boomi, Inc.
-package com.ntapia.bank.customer;
+package com.ntapia.bank.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -8,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-class CustomerNotFoundException extends RuntimeException {
+public class CustomerNotFoundException extends RuntimeException {
 
-    CustomerNotFoundException() {
+    public CustomerNotFoundException() {
         super("Customer not found");
     }
 }

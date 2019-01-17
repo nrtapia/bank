@@ -1,4 +1,7 @@
-package com.ntapia.bank.customer;
+package com.ntapia.bank.controller;
+
+import com.ntapia.bank.service.CustomerService;
+import com.ntapia.bank.model.Customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

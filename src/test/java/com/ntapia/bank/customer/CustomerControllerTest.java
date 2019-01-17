@@ -1,5 +1,11 @@
 package com.ntapia.bank.customer;
 
+import com.ntapia.bank.controller.CustomerController;
+import com.ntapia.bank.exception.CustomerNotFoundException;
+import com.ntapia.bank.model.Card;
+import com.ntapia.bank.model.Customer;
+import com.ntapia.bank.service.CustomerService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +21,6 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

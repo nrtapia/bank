@@ -1,5 +1,8 @@
-// Copyright (c) 2018 Boomi, Inc.
 package com.ntapia.bank.customer;
+
+import com.ntapia.bank.dao.CustomerRepository;
+import com.ntapia.bank.model.Card;
+import com.ntapia.bank.model.Customer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +65,7 @@ public class CustomerRepositoryIT {
         assertNotNull("Save operation fail", customer);
         assertNotNull("Id not found", customer.getId());
         assertNotNull("Cards not found", customer.getCards());
-        assertEquals("Cards size grong", 2, customer.getCards().size());
+        assertEquals("Cards size wrong", 2, customer.getCards().size());
 
         mockCustomer1.getCards().forEach(card -> assertNotNull(card.getId()));
     }

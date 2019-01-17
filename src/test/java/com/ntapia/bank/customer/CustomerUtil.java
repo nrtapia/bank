@@ -1,9 +1,11 @@
 package com.ntapia.bank.customer;
 
+import com.ntapia.bank.model.Customer;
+
 /**
  *
  */
-public class CustomerUtil {
+class CustomerUtil {
 
     private CustomerUtil() {
     }
