@@ -1,8 +1,8 @@
 package com.ntapia.bank.controller;
 
 import com.ntapia.bank.common.Util;
-import com.ntapia.bank.service.CustomerService;
-import com.ntapia.bank.model.Customer;
+import com.ntapia.bank.model.Adviser;
+import com.ntapia.bank.service.AdviserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,38 +20,38 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/adviser")
+public class AdviserController {
 
-    private final CustomerService customerService;
+    private final AdviserService adviserService;
 
     @Autowired
-    public CustomerController(CustomerService customerService) {
-        this.customerService = customerService;
+    public AdviserController(AdviserService adviserService) {
+        this.adviserService = adviserService;
     }
 
     @GetMapping
-    public List<Customer> get() {
-        return customerService.list();
+    public List<Adviser> get() {
+        return adviserService.list();
     }
 
     @GetMapping(Util.PATH_ID)
-    public Customer get(@PathVariable Long id) {
-        return customerService.get(id);
+    public Adviser get(@PathVariable Long id) {
+        return adviserService.get(id);
     }
 
     @PostMapping
-    public Customer post(@RequestBody Customer customer) {
-        return customerService.save(customer);
+    public Adviser post(@RequestBody Adviser advicer) {
+        return adviserService.save(advicer);
     }
 
     @PutMapping(Util.PATH_ID)
-    public Customer put(@RequestBody Customer customer, @PathVariable Long id) {
-        return customerService.update(customer, id);
+    public Adviser put(@RequestBody Adviser adviser, @PathVariable Long id) {
+        return adviserService.update(adviser, id);
     }
 
     @DeleteMapping(Util.PATH_ID)
     public void put(@PathVariable Long id) {
-        customerService.delete(id);
+        adviserService.delete(id);
     }
 }

@@ -22,31 +22,19 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Card implements Serializable {
+public class Adviser implements Serializable {
 
     private static final long serialVersionUID = 20190117L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column(length = 4, nullable = false)
-    private String number1;
-
-    @Column(length = 4, nullable = false)
-    private String number2;
-
-    @Column(length = 4, nullable = false)
-    private String number3;
-
-    @Column(length = 4, nullable = false)
-    private String number4;
-
-    @Column(length = 4, nullable = false)
-    private String ccv;
+    @Column(length = 50, nullable = false, unique = true)
+    private String fullName;
 
     @Column(length = 50, nullable = false)
-    private String cardType;
+    private String speciality;
 
     @Version
     private Long version;
