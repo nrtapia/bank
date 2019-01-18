@@ -1,5 +1,6 @@
 package com.ntapia.bank.service.impl;
 
+import com.ntapia.bank.common.Util;
 import com.ntapia.bank.dao.CustomerRepository;
 import com.ntapia.bank.exception.CustomerAlreadyExistException;
 import com.ntapia.bank.exception.CustomerException;
@@ -23,13 +24,9 @@ import java.util.List;
  *
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
 public class CustomerServiceImpl implements CustomerService {
 
     private static final Logger LOG = LoggerFactory.getLogger(CustomerServiceImpl.class);
-
-    private static final String FIELD_NAME = "fullName";
-    private static final Sort DEFAULT_SORT = new Sort(Sort.Direction.ASC, FIELD_NAME);
 
     private final CustomerRepository repository;
 
@@ -40,7 +37,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> list() {
-        return repository.findAll(DEFAULT_SORT);
+        return repository.findAll(Util.DEFAULT_SORT);
     }
 
     @Override
@@ -48,6 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
         return repository.findById(id).orElseThrow(CustomerNotFoundException::new);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Customer save(Customer object) {
         if (object == null || StringUtils.isBlank(object.getFullName())) {
@@ -67,6 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Customer update(Customer object, Long id) {
         if (object == null || id == null || StringUtils.isBlank(object.getFullName())) {
@@ -91,6 +90,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public void delete(Long id) {
         repository.delete(repository.findById(id).orElseThrow(CustomerNotFoundException::new));
