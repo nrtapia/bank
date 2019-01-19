@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 /**
- *
+ * Repository to access Transaction data
  */
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 

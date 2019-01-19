@@ -17,7 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * Controller to expose Transaction REST endpoints
  *
+ *  GET     /transaction?cardid=?
+ *  GET     /transaction/{id}
+ *  POST    /transaction
+ *  PUT     /transaction/{id}
+ *  DELETE  /transaction/{id}
  */
 @RestController
 public class TransactionController {

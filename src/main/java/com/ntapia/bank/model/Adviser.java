@@ -15,7 +15,7 @@ import javax.persistence.Version;
 import java.io.Serializable;
 
 /**
- *
+ * Entity that represents the Adviser data
  */
 @Entity
 @Data

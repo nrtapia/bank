@@ -3,6 +3,9 @@ package com.ntapia.bank;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Main class to application bootstrap
+ */
 @SpringBootApplication
 public class BankApplication {
 

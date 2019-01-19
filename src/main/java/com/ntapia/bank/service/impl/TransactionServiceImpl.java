@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *
+ * Business logic implementation to Transaction
  */
 @Service
 public class TransactionServiceImpl implements TransactionService {
