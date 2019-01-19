@@ -17,7 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * Controller to expose Adviser REST endpoints
  *
+ *  GET     /adviser
+ *  GET     /adviser/{id}
+ *  POST    /adviser
+ *  PUT     /adviser/{id}
+ *  DELETE  /adviser/{id}
  */
 @RestController
 @RequestMapping("/adviser")
@@ -41,8 +47,8 @@ public class AdviserController {
     }
 
     @PostMapping
-    public Adviser post(@RequestBody Adviser advicer) {
-        return adviserService.save(advicer);
+    public Adviser post(@RequestBody Adviser adviser) {
+        return adviserService.save(adviser);
     }
 
     @PutMapping(Util.PATH_ID)

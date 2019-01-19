@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *
+ * Business logic implementation to Adviser
  */
 @Service
 public class AdviserServiceImpl implements AdviserService {
@@ -30,7 +30,7 @@ public class AdviserServiceImpl implements AdviserService {
 
     @Override
     public List<Adviser> list() {
-        return repository.findAll(Util.DEFAULT_SORT);
+        return repository.findAll(Util.SORT_BY_FULL_NAME);
     }
 
     @Override

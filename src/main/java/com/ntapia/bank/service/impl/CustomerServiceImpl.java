@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- *
+ * Business logic implementation to Customer
  */
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -37,7 +36,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customer> list() {
-        return repository.findAll(Util.DEFAULT_SORT);
+        return repository.findAll(Util.SORT_BY_FULL_NAME);
     }
 
     @Override

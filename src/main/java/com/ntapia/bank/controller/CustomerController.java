@@ -17,7 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
+ * Controller to expose Customer REST endpoints
  *
+ *  GET     /customer
+ *  GET     /customer/{id}
+ *  POST    /customer
+ *  PUT     /customer/{id}
+ *  DELETE  /customer/{id}
  */
 @RestController
 @RequestMapping("/customer")

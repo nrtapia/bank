@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- *
+ * Entity that represents the Customers data
  */
 @Entity
 @Data

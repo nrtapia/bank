@@ -15,7 +15,7 @@ import javax.persistence.Version;
 import java.io.Serializable;
 
 /**
- *
+ * Entity that represents the Cards data
  */
 @Entity
 @Data

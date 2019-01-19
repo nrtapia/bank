@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- *
+ * Entity that represents the Transactions data
  */
 @Entity
 @Data
@@ -45,5 +45,4 @@ public class Transaction implements Serializable {
     private String description;
 
     private Double amount;
-
 }
