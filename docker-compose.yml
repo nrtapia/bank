@@ -1,0 +1,12 @@
+version: "2"
+services:
+    backend:
+        container_name: bank-app-1
+        image: ntapia/bank-app:1.0
+        ports:
+            - 8080:8080
+    frontend:
+        container_name: bank-app-dashboard-1
+        image: ntapia/bank-app-dashboard:1.0
+        ports:
+          - 80:80

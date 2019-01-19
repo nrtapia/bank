@@ -19,3 +19,11 @@ To enable CORS Origins update `src/main/resources/application.properties` change
 ## Run
 
 Run `java -jar target/bank-0.0.1-SNAPSHOT.jar`
+
+## Docker
+
+Create docker image with `Dockerfile` run command `./docker build . -t ntapia/bank-app:1.0`
+
+Create containers with `docker-compose.yml` run command `./docker-compose up -d`
+
+Open the Web App with a browse in `http://localhost`
