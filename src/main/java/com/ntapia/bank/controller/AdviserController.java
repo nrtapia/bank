@@ -51,7 +51,7 @@ public class AdviserController {
     }
 
     @DeleteMapping(Util.PATH_ID)
-    public void put(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         adviserService.delete(id);
     }
 }

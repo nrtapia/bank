@@ -24,5 +24,10 @@ INSERT INTO adviser (id, full_name, speciality, version) VALUES (11, 'Jimbo Jone
 INSERT INTO adviser (id, full_name, speciality, version) VALUES (12, 'Barney Gumble', 'Seguros', 0);
 
 
+INSERT INTO transaction (id, card_id, description, date, amount) VALUES (1, 1, 'Soda drinks', '2018-01-01 01:00:00', 1000);
+INSERT INTO transaction (id, card_id, description, date, amount) VALUES (2, 1, 'Mac Donald', '2018-01-02 03:30:00', 40000.30);
+INSERT INTO transaction (id, card_id, description, date, amount) VALUES (3, 1, 'Soda drinks', '2018-01-01 01:00:00', 1000);
+INSERT INTO transaction (id, card_id, description, date, amount) VALUES (4, 2, 'Mac Donald', '2018-01-02 03:30:00', 40000.30);
+
 drop sequence hibernate_sequence;
 create sequence hibernate_sequence start with 100 increment by 1
