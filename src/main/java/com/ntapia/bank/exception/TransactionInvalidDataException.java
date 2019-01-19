@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  *
  */
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class CustomerInvalidDataException extends RuntimeException {
+public class TransactionInvalidDataException extends RuntimeException {
 
-    public CustomerInvalidDataException() {
-        super("Full name it's required");
+    public TransactionInvalidDataException() {
+        super("Description, Date, and Amount it's required");
     }
 }

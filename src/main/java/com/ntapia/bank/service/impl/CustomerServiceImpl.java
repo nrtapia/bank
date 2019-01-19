@@ -48,9 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Customer save(Customer object) {
-        if (object == null || StringUtils.isBlank(object.getFullName())) {
-            throw new CustomerInvalidDataException();
-        }
+        validate(object);
 
         object.setFullName(object.getFullName().toUpperCase());
         repository.findByFullName(object.getFullName()).ifPresent(c -> {
@@ -65,12 +63,16 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    private void validate(Customer object) {
+        if (object == null || StringUtils.isBlank(object.getFullName())) {
+            throw new CustomerInvalidDataException();
+        }
+    }
+
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
     public Customer update(Customer object, Long id) {
-        if (object == null || id == null || StringUtils.isBlank(object.getFullName())) {
-            throw new CustomerInvalidDataException();
-        }
+        validate(object);
 
         object.setFullName(object.getFullName().toUpperCase());
         Customer customer = repository.findByFullName(object.getFullName()).orElseThrow(CustomerNotFoundException::new);
